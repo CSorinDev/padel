@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-text: var(--color-text);
+  --color-bg: var(--color-bg);
+  --color-danger: var(--color-danger);
+  --color-brand: var(--color-brand);
+}
+
+:root {
+  --color-text: #121212;
+  --color-bg: #efefef;
+  --color-danger: #f00;
+  --color-brand: crimson;
+}
+
+.dark {
+  --color-text: #fefefe;
+  --color-bg: #121212;
+  --color-danger: #f00;
+  --color-brand: #a1142c;
+}
+
+body {
+  @apply text-text bg-bg
+}
+
+button {
+  @apply cursor-pointer
+}
