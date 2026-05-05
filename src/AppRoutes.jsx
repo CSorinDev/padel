@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router'
-import Layout from './features/layouts/Layout'
+import Layout from './layouts/Layout'
 import HomePage from './pages/HomePage'
 import ClasificacionPage from './pages/ClasificacionPage'
 import LoginPage from './pages/LoginPage'

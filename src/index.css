@@ -30,3 +30,8 @@ body {
 button {
   @apply cursor-pointer;
 }
+
+/* .matchTable td,
+.matchTable th {
+  @apply px-2 py-1;
+} */
