@@ -1,8 +1,5 @@
 import { X } from 'lucide-react'
-import { MenuSquare } from 'lucide-react'
 import { Menu } from 'lucide-react'
-import { MenuSquareIcon } from 'lucide-react'
-import { MenuIcon } from 'lucide-react'
 import { useState } from 'react'
 import { NavLink } from 'react-router'
 
@@ -52,7 +49,7 @@ export default function Header() {
           <NavLink
             onClick={() => setIsNavOpen(false)}
             className={({ isActive }) =>
-              `${isActive && 'underline '} hover:underline decoration-2 underline-offset-4 tracking-wide py-1 px-2 font-mono text-sm font-bold uppercase transition`
+              `${isActive && 'underline '} px-2 py-1 font-mono text-sm font-bold tracking-wide uppercase decoration-2 underline-offset-4 transition hover:underline`
             }
             to={to}
           >

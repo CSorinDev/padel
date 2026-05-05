@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -24,9 +24,9 @@
 }
 
 body {
-  @apply text-text bg-bg
+  @apply text-text bg-bg;
 }
 
 button {
-  @apply cursor-pointer
+  @apply cursor-pointer;
 }
