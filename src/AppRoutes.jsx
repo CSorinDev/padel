@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage'
 import ClasificacionPage from './pages/ClasificacionPage'
 import LoginPage from './pages/LoginPage'
 import PartidosPage from './pages/PartidosPage'
+import RegisterPage from './pages/RegisterPage'
 
 function AppRoutes() {
   return (
@@ -13,6 +14,7 @@ function AppRoutes() {
         <Route path="partidos" element={<PartidosPage />} />
         <Route path="clasificacion" element={<ClasificacionPage />} />
         <Route path="login" element={<LoginPage />} />
+        <Route path="register" element={<RegisterPage />} />
       </Route>
     </Routes>
   )

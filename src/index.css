@@ -13,7 +13,7 @@
   --color-text: #121212;
   --color-bg: #efefef;
   --color-danger: #f00;
-  --color-brand: crimson;
+  --color-brand: #09f;
 }
 
 .dark {
@@ -31,7 +31,30 @@ button {
   @apply cursor-pointer;
 }
 
-/* .matchTable td,
-.matchTable th {
-  @apply px-2 py-1;
-} */
+.form {
+  @apply grid py-8 gap-2 px-12 place-self-center border border-text/10 shadow-lg shadow-text/10 rounded-xl min-w-sm bg-white;
+}
+
+.form h1 {
+  @apply font-bold text-xl font-mono uppercase tracking-tighter mb-4
+}
+
+.form p:first-of-type {
+  @apply text-sm mt-4
+}
+
+.form label {
+  @apply uppercase text-sm font-semibold tracking-tight
+}
+
+.form input {
+  @apply ring-text/30 focus:ring-text rounded-md px-2 py-1 ring-1 transition-all outline-none focus:ring-2 mb-2;
+}
+
+.form button {
+  @apply mb-2
+}
+
+.form a {
+  @apply underline font-bold text-blue-600
+}
