@@ -17,13 +17,13 @@ class AuthController {
       csrfToken,
     }
 
-    const token = jwt.sign(payload, JWT_SECRET, { expiresIn: '1h' })
+    const token = jwt.sign(payload, JWT_SECRET, { expiresIn: '7d' })
 
     const cookieOptions = {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
-      maxAge: 1000 * 60 * 60 * 24,
+      maxAge: 1000 * 60 * 60 * 24 * 7,
     }
 
     res.cookie('access_token', token, cookieOptions)
