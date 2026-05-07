@@ -47,6 +47,7 @@ export default function Header() {
       >
         {navLinks.map(({ to, label }) => (
           <NavLink
+          key={label}
             onClick={() => setIsNavOpen(false)}
             className={({ isActive }) =>
               `${isActive && 'underline '} px-2 py-1 font-mono text-sm font-bold tracking-wide uppercase decoration-2 underline-offset-4 transition hover:underline`
