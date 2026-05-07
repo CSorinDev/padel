@@ -1,9 +1,13 @@
 import Button from '../components/ui/Button'
 import { NavLink } from 'react-router'
+import useRegisterForm from '../hooks/actions/useRegisterForm'
+import { TriangleAlert } from 'lucide-react'
 
 export default function RegisterPage() {
+  const { state, registerAction, loading } = useRegisterForm()
+
   return (
-    <form className="form" action="">
+    <form className="form" action={registerAction}>
       <h1>Registro</h1>
 
       <label htmlFor="name">Nombre</label>
@@ -15,10 +19,19 @@ export default function RegisterPage() {
       <label htmlFor="password">Contraseña</label>
       <input type="password" name="password" id="password" />
 
-      <label htmlFor="password2">Repetir Contraseña</label>
-      <input type="password" name="password2" id="password2" />
+      <label htmlFor="confirmPassword">Repetir Contraseña</label>
+      <input type="password" name="confirmPassword" id="confirmPassword" />
 
-      <Button>Registrarse</Button>
+      <Button type="submit" disabled={loading}>
+        {loading ? 'Registrando...' : 'Registrarse'}
+      </Button>
+
+      {state?.error && (
+        <span>
+          <TriangleAlert size={16} />
+          {state.error}{' '}
+        </span>
+      )}
 
       <p>
         ¿Ya tienes cuenta? <NavLink to="/login">Inicia Sesión</NavLink>
