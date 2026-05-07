@@ -55,6 +55,10 @@ button {
   @apply mb-2
 }
 
+.form span {
+  @apply text-danger text-sm flex items-center gap-1
+}
+
 .form a {
   @apply underline font-bold text-blue-600
 }
