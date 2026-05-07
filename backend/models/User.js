@@ -1,9 +1,9 @@
 import { DataTypes, Model } from 'sequelize'
 import sequelize from '../database/database.js'
 
-class Player extends Model {}
+class User extends Model {}
 
-Player.init(
+User.init(
   {
     id: {
       type: DataTypes.UUID,
@@ -13,29 +13,28 @@ Player.init(
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
     },
     email: {
       type: DataTypes.STRING,
-      allowNull: true,
       unique: true,
-      validate: {
-        isEmail: true,
-      },
+      allowNull: false,
     },
-    photo: {
+    password: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
+    },
+    role: {
+      type: DataTypes.ENUM('admin', 'user'),
+      allowNull: false,
+      defaultValue: 'user',
     },
   },
   {
     sequelize,
-    modelName: 'Player',
-    tableName: 'players', // Forzamos el nombre de la tabla en plural
-    timestamps: true, // Crea createdAt y updatedAt automáticamente
+    timestamps: true,
+    modelName: 'User',
+    tableName: 'users',
   }
 )
 
-export default Player
+export default User
