@@ -1,8 +1,23 @@
 import { useActionState } from 'react'
 import AuthService from '../../services/AuthService'
+import useAuth from '../useAuth'
+import { useEffect } from 'react'
 
 export default function useRegisterForm() {
-  const handleRegister = async (state, formData) => {
+  const [state, registerAction, loading] = useActionState(handleRegister, {
+    success: false,
+    error: null,
+  })
+  const { setUser } = useAuth()
+  
+  useEffect(() => {
+    if(state.success && state.user) {
+      setUser(state.user)
+      return
+    }
+  }, [state])
+
+  async function handleRegister(state, formData) {
     const name = formData.get('name')
     const email = formData.get('email')
     const password = formData.get('password')
@@ -14,17 +29,12 @@ export default function useRegisterForm() {
     if (password !== confirmPassword)
       return { success: false, error: 'Las contraseñas no coinciden' }
 
-    const res = await AuthService.register(name, email, password)
+    const data = await AuthService.register(name, email, password)
 
-    if (res.error) return { success: false, error: res.error }
+    if (data.error) return { success: false, error: data.error }
 
-    return { success: true, user: res.user }
+    return { success: true, user: data.user }
   }
-
-  const [state, registerAction, loading] = useActionState(handleRegister, {
-    success: false,
-    error: null,
-  })
 
   return { state, registerAction, loading }
 }

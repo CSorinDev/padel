@@ -8,6 +8,7 @@ class AuthService {
       const res = await fetch(`${this.baseURL}/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
         body: JSON.stringify({ name, email, password }),
       })
 
