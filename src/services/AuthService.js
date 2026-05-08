@@ -1,13 +1,39 @@
 class AuthService {
+  constructor() {
+    this.baseURL = 'http://localhost:3000/api/auth'
+  }
+
   async register(name, email, password) {
-    // 1. Hacemos la petición
-    const res = await fetch('http://localhost:3000/api/auth/register', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, email, password }),
-    })
-    
-    return res
+    try {
+      const res = await fetch(`${this.baseURL}/register`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, password }),
+      })
+
+      const user = await res.json()
+
+      return user
+    } catch (err) {
+      return { success: false, error: 'Error al conectar con el servidor' }
+    }
+  }
+
+  async login(email, password) {
+    try {
+      const res = await fetch(`${this.baseURL}/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ email, password }),
+      })
+
+      const user = await res.json()
+
+      return user
+    } catch (error) {
+      return { success: false, error: 'Error al conectar con el servidor' }
+    }
   }
 }
 

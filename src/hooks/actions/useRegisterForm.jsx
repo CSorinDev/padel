@@ -15,11 +15,10 @@ export default function useRegisterForm() {
       return { success: false, error: 'Las contraseñas no coinciden' }
 
     const res = await AuthService.register(name, email, password)
-    const data = await res.json()
 
-    if (!res.ok) return { success: false, error: data.message }
+    if (res.error) return { success: false, error: res.error }
 
-    return { success: true, error: null }
+    return { success: true, user: res.user }
   }
 
   const [state, registerAction, loading] = useActionState(handleRegister, {

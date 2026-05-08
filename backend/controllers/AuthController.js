@@ -49,9 +49,9 @@ class AuthController {
     if (!name || !email || !password)
       throw new AppError('Todos los campos son obligatorios', 400)
 
-    const user = await AuthService.add(name, email, password)
+    await AuthService.add(name, email, password)
 
-    this._sendTokenResponse(user, 201, res)
+    this.login(req, res)
   })
 
   login = asyncHandler(async (req, res) => {
