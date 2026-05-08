@@ -29,17 +29,13 @@ class AuthController {
     const userData = {
       name: user.name,
       email: user.email,
-      role: user.role
+      role: user.role,
     }
 
-    res.cookie(
-      'user',
-      JSON.stringify(userData),
-      {
-        ...cookieOptions,
-        httpOnly: false,
-      }
-    )
+    res.cookie('user', JSON.stringify(userData), {
+      ...cookieOptions,
+      httpOnly: false,
+    })
 
     res.cookie('access_token', token, cookieOptions)
 
@@ -76,6 +72,25 @@ class AuthController {
     const user = await AuthService.login(email, password)
 
     this._sendTokenResponse(user, 200, res)
+  })
+
+  logout = asyncHandler(async (_req, res) => {
+    res.clearCookie('access_token', {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax'
+    })
+    res.clearCookie('user', {
+      httpOnly: false,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax'
+    })
+    res.clearCookie('csrf_token', {
+      httpOnly: false,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax'
+    })
+    res.status(200).json({ success: true })
   })
 }
 

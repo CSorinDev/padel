@@ -35,6 +35,21 @@ class AuthService {
       return { success: false, error: 'Error al conectar con el servidor' }
     }
   }
+
+  async logout() {
+    try {
+      const res = await fetch(`${this.baseURL}/logout`, {
+        method: 'POST',
+        credentials: 'include',
+      })
+
+      const data = await res.json()
+
+      return data
+    } catch (error) {
+      return { success: false, error: 'Error al conectar con el servidor' }
+    }
+  }
 }
 
 export default new AuthService()

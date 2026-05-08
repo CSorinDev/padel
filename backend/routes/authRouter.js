@@ -16,5 +16,6 @@ authRouter.post('/me', authMiddleware, (req, res) => {
     },
   })
 })
+authRouter.post('/logout', AuthController.logout)
 
 export default authRouter

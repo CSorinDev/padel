@@ -3,11 +3,11 @@ import { Menu } from 'lucide-react'
 import { useState } from 'react'
 import { NavLink } from 'react-router'
 import useAuth from '../hooks/useAuth'
-
+import { LogOut } from 'lucide-react'
 
 export default function Header() {
   const [isNavOpen, setIsNavOpen] = useState(false)
-  const { user } = useAuth()
+  const { user, logout } = useAuth()
 
   const navLinks = [
     {
@@ -28,11 +28,6 @@ export default function Header() {
     navLinks.push({
       to: '/login',
       label: 'Login',
-    })
-  } else {
-    navLinks.push({
-      to: "/logout",
-      label: "Salir"
     })
   }
 
@@ -56,7 +51,7 @@ export default function Header() {
       <nav
         className={`${isNavOpen ? ' scale-100' : ' scale-0'} border-text/10 bg-background absolute top-full right-8 grid max-h-fit origin-top gap-2 rounded-xl border p-12 shadow-xl transition md:static md:flex md:scale-100 md:border-none md:p-0 md:shadow-none`}
       >
-        {navLinks.map(({ to, label }) => (
+        {navLinks.map(({ to, label, icon }) => (
           <NavLink
             key={label}
             onClick={() => setIsNavOpen(false)}
@@ -65,9 +60,24 @@ export default function Header() {
             }
             to={to}
           >
-            {label}
+            {icon ? (
+              <span className="border-text/30 flex items-center gap-1 border-l-2 pl-4">
+                {icon}
+                {label}
+              </span>
+            ) : (
+              label
+            )}
           </NavLink>
         ))}
+        {user && (
+          <button
+            onClick={logout}
+            className="text-danger flex items-center gap-1 font-mono text-sm font-bold uppercase"
+          >
+            <LogOut size={16} /> Salir
+          </button>
+        )}
       </nav>
     </header>
   )

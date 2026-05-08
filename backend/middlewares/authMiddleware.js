@@ -3,7 +3,7 @@ import AppError from '../utils/AppError.js'
 import asyncHandler from '../utils/asyncHandler.js'
 import jwt from 'jsonwebtoken'
 
-export const authMiddleware = asyncHandler(async (req, res, next) => {
+export const authMiddleware = asyncHandler(async (req, _res, next) => {
   const token = req.cookies.access_token
   if (!token) throw new AppError('Sesión expirada o no iniciada', 401)
 

@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { createContext, useState } from 'react'
+import AuthService from '../services/AuthService'
 
 export const AuthContext = createContext()
 
@@ -13,8 +14,9 @@ export default function AuthProvider({ children }) {
     return JSON.parse(decodedUserData) || null
   })
 
-  const logout = () => {
+  const logout = async () => {
     setUser(null)
+    await AuthService.logout()
   }
 
   useEffect(() => {
