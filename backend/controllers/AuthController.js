@@ -26,6 +26,21 @@ class AuthController {
       maxAge: 1000 * 60 * 60 * 24 * 7,
     }
 
+    const userData = {
+      name: user.name,
+      email: user.email,
+      role: user.role
+    }
+
+    res.cookie(
+      'user',
+      JSON.stringify(userData),
+      {
+        ...cookieOptions,
+        httpOnly: false,
+      }
+    )
+
     res.cookie('access_token', token, cookieOptions)
 
     res.cookie('csrf_token', csrfToken, {
@@ -36,7 +51,6 @@ class AuthController {
     res.status(statusCode).json({
       status: 'success',
       user: {
-        id: user.id,
         name: user.name,
         email: user.email,
         role: user.role,

@@ -2,28 +2,39 @@ import { X } from 'lucide-react'
 import { Menu } from 'lucide-react'
 import { useState } from 'react'
 import { NavLink } from 'react-router'
+import useAuth from '../hooks/useAuth'
 
-const navLinks = [
-  {
-    to: '/',
-    label: 'Inicio',
-  },
-  {
-    to: '/partidos',
-    label: 'Partidos',
-  },
-  {
-    to: '/clasificacion',
-    label: 'Clasificación',
-  },
-  {
-    to: '/login',
-    label: 'Login',
-  },
-]
 
 export default function Header() {
   const [isNavOpen, setIsNavOpen] = useState(false)
+  const { user } = useAuth()
+
+  const navLinks = [
+    {
+      to: '/',
+      label: 'Inicio',
+    },
+    {
+      to: '/partidos',
+      label: 'Partidos',
+    },
+    {
+      to: '/clasificacion',
+      label: 'Clasificación',
+    },
+  ]
+
+  if (!user) {
+    navLinks.push({
+      to: '/login',
+      label: 'Login',
+    })
+  } else {
+    navLinks.push({
+      to: "/logout",
+      label: "Salir"
+    })
+  }
 
   return (
     <header className="bg-bg relative flex items-center justify-between p-4">
@@ -47,7 +58,7 @@ export default function Header() {
       >
         {navLinks.map(({ to, label }) => (
           <NavLink
-          key={label}
+            key={label}
             onClick={() => setIsNavOpen(false)}
             className={({ isActive }) =>
               `${isActive && 'underline '} px-2 py-1 font-mono text-sm font-bold tracking-wide uppercase decoration-2 underline-offset-4 transition hover:underline`

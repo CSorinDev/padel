@@ -5,6 +5,7 @@ import ClasificacionPage from './pages/ClasificacionPage'
 import LoginPage from './pages/LoginPage'
 import PartidosPage from './pages/PartidosPage'
 import RegisterPage from './pages/RegisterPage'
+import PublicRoutes from './components/PublicRoutes'
 
 function AppRoutes() {
   return (
@@ -13,8 +14,10 @@ function AppRoutes() {
         <Route index element={<HomePage />} />
         <Route path="partidos" element={<PartidosPage />} />
         <Route path="clasificacion" element={<ClasificacionPage />} />
-        <Route path="login" element={<LoginPage />} />
-        <Route path="register" element={<RegisterPage />} />
+        <Route element={<PublicRoutes />}>
+          <Route path="login" element={<LoginPage />} />
+          <Route path="register" element={<RegisterPage />} />
+        </Route>
       </Route>
     </Routes>
   )

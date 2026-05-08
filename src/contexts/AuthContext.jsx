@@ -4,16 +4,18 @@ import { createContext, useState } from 'react'
 export const AuthContext = createContext()
 
 export default function AuthProvider({ children }) {
-  const [user, setUser] = useState()
+  const [user, setUser] = useState(() => {
+    const userData = document.cookie.split(';')[0].split('=')[1]
+    if (!userData) return null
+
+    const decodedUserData = decodeURIComponent(userData)
+
+    return JSON.parse(decodedUserData) || null
+  })
 
   const logout = () => {
     setUser(null)
   }
-
-  useEffect(() => {
-    const savedUser = localStorage.getItem('user')
-    if (savedUser) setUser(JSON.parse(savedUser))
-  }, [])
 
   useEffect(() => {
     if (user) {
