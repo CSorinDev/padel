@@ -1,9 +1,11 @@
-export default function ProtectedRoute({ children }) {
+import { Navigate, Outlet } from 'react-router'
+
+export default function ProtectedRoute() {
   const { user } = useAuth()
 
   if (!user) {
     return <Navigate to="/login" replace />
   }
 
-  return children
+  return <Outlet />
 }
