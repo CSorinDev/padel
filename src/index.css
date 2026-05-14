@@ -48,7 +48,7 @@ button {
 }
 
 .form input {
-  @apply ring-text/30 focus:ring-text rounded-md px-2 py-1 ring-1 transition-all outline-none focus:ring-2 mb-2;
+  @apply ring-text/30 focus:ring-text rounded-md px-2 py-1 ring-1 transition-all outline-none focus:ring-2 ;
 }
 
 .form button {
