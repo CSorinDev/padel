@@ -24,6 +24,13 @@ export default function Header() {
     },
   ]
 
+  if (user) {
+    navLinks.push({
+      to: '/mis-partidos',
+      label: 'Mis Partidos',
+    })
+  }
+
   if (!user) {
     navLinks.push({
       to: '/login',
