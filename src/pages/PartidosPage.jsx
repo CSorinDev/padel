@@ -3,6 +3,10 @@ import { Plus } from 'lucide-react'
 import { ChartNoAxesColumn } from 'lucide-react'
 import { useState } from 'react'
 import AddMatch from '../components/sections/AddMatch'
+import { Plus } from 'lucide-react'
+import { ChartNoAxesColumn } from 'lucide-react'
+import { useState } from 'react'
+import AddMatch from '../components/sections/AddMatch'
 
 export default function PartidosPage({
   partidos = [
@@ -134,6 +138,20 @@ export default function PartidosPage({
     },
   ],
 }) {
+  const [selected, setSelected] = useState('Añadir Partido')
+  const headerButtons = [
+    {
+      icon: <ChartNoAxesColumn size={16} />,
+      label: 'Partidos',
+    },
+    {
+      icon: <Plus size={16} />,
+      label: 'Añadir Partido',
+    },
+  ]
+
+  const buttonStyle = `gap-1 px-4 after:h-0.5 after:bg-black after:block after:translate-y-0.5 whitespace-nowrap}`
+
   const [selected, setSelected] = useState('Añadir Partido')
   const headerButtons = [
     {
